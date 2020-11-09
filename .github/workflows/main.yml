@@ -1,0 +1,52 @@
+name: CD
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install
+        run: yarn install
+      - name: Test
+        run: yarn test
+      - name: Lint
+        run: yarn lint
+
+  publish-npm:
+    if: github.event_name == 'push' # Push/merge only, not on PR
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install
+        run: yarn install
+      - name: Typescript build
+        run: yarn build
+      - name: Bump node version
+        run: yarn bump
+      - name: Publish to NPMJS
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: package.json
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4.1.3
+        with:
+          commit_message: Bump version
+          commit_author: Skyhook Bot <development@skyhookadventure.com>
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
