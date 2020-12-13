@@ -63,7 +63,7 @@ export default class Parser {
 export type Context = {
   arguments?: object;
   source?: object;
-  result?: object;
+  result?: object | string;
   identity?: object;
   request?: object;
   info?: object;
