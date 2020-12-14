@@ -28,6 +28,25 @@ test("util.quiet hides result", () => {
   expect(res).toEqual({ test: [1] });
 });
 
+test("resolve with additional util", () => {
+  const mockRdsToJsonObject = jest.fn();
+  const rdsResult = "rds result text";
+  mockRdsToJsonObject.mockImplementationOnce((args) => {
+    return args === rdsResult ? [10] : [];
+  });
+  const additionalUtil = {
+    rds: {
+      toJsonObject: mockRdsToJsonObject,
+    },
+  };
+  const vtl = `
+  #set($response = $utils.rds.toJsonObject($ctx.result)[0])
+  {"test": $response}`;
+  const parser = new Parser(vtl);
+  const res = parser.resolve({ result: rdsResult }, additionalUtil);
+  expect(res).toEqual({ test: 10 });
+});
+
 describe("Typecasting works as expected", () => {
   test("Boolean false", () => {
     const vtl = "\nfalse "; // Note surrounding whitespace should be ignored

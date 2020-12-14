@@ -14,7 +14,7 @@ export default class Parser {
   /**
    * Resolve as a string
    */
-  public resolve(context: Context): any {
+  public resolve(context: Context, additionalUtil?: object): any {
     const clonedContext = JSON.parse(JSON.stringify(context));
     clonedContext.args = clonedContext.arguments;
 
@@ -22,6 +22,7 @@ export default class Parser {
       ...utilCore,
       time,
       dynamodb,
+      ...additionalUtil,
     };
 
     const params = {
@@ -63,7 +64,7 @@ export default class Parser {
 export type Context = {
   arguments?: object;
   source?: object;
-  result?: object;
+  result?: object | string;
   identity?: object;
   request?: object;
   info?: object;
