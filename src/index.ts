@@ -32,7 +32,14 @@ export default class Parser {
       utils: util,
     };
 
-    const res = render(this.template, params);
+    const macros = {
+      return(this: { stop(): void }, value: unknown | undefined) {
+        this.stop();
+        return value !== undefined ? JSON.stringify(value) : "null";
+      },
+    };
+
+    const res = render(this.template, params, macros);
 
     // Remove preceeding and trailing whitespace
     const resWithoutWhitespace = res
