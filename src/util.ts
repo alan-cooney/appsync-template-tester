@@ -64,6 +64,7 @@ export function validate(bool: Boolean, message?: string) {
   if (!bool) {
     throw new Error(message);
   }
+  return "";
 }
 
 export function isNull(input?: any) {

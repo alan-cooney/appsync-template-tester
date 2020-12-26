@@ -28,6 +28,15 @@ test("util.quiet hides result", () => {
   expect(res).toEqual({ test: [1] });
 });
 
+test("util.validate hides result if valid", () => {
+  const vtl = `
+  $util.validate(true, "Error")
+  {}`;
+  const parser = new Parser(vtl);
+  const res = parser.resolve({});
+  expect(res).toEqual({});
+});
+
 test("resolve with additional util", () => {
   const mockRdsToJsonObject = jest.fn();
   const rdsResult = "rds result text";
