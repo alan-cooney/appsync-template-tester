@@ -34,7 +34,7 @@ export default class Parser {
 
     const res = render(this.template, params);
 
-    // Remove preceeding and trailing whitespace
+    // Remove preceding and trailing whitespace
     const resWithoutWhitespace = res
       .replace(/^[\n\s\r]*/, "")
       .replace(/[\n\s\r]*$/, "");
@@ -43,10 +43,10 @@ export default class Parser {
     if (res === "false") return false;
     if (res === "true") return true;
 
-    // Typecase Null
+    // Typecast Null
     if (res === "null") return null;
 
-    // Typecase Numbers
+    // Typecast Numbers
     // eslint-disable-next-line no-restricted-globals
     if (!isNaN((res as unknown) as number)) return parseFloat(res);
 
