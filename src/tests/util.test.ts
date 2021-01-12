@@ -127,13 +127,14 @@ test("appendError does nothing", () => {
 });
 
 describe("validate", () => {
-  test("false throughs an error", () => {
+  test("false throws an error", () => {
     const testMessage = "errorMessage";
     expect(() => validate(false, testMessage)).toThrow(testMessage);
   });
 
-  test("true does nothing", () => {
-    validate(true, "errorMessage");
+  test("true returns a blank string", () => {
+    const result = validate(true, "errorMessage");
+    expect(result).toBe("");
   });
 });
 
