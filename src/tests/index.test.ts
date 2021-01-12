@@ -56,6 +56,24 @@ test("resolve with additional util", () => {
   expect(res).toEqual({ test: 10 });
 });
 
+test("#return can return an object early", () => {
+  const vtl = `
+  #return({"result": "A"})
+  {"result": "B"}`;
+  const parser = new Parser(vtl);
+  const res = parser.resolve({});
+  expect(res).toEqual({ result: "A" });
+});
+
+test("#return returns null if called without arguments", () => {
+  const vtl = `
+  #return()
+  {"result": "B"}`;
+  const parser = new Parser(vtl);
+  const res = parser.resolve({});
+  expect(res).toEqual(null);
+});
+
 describe("Typecasting works as expected", () => {
   test("Boolean false", () => {
     const vtl = "\nfalse "; // Note surrounding whitespace should be ignored
