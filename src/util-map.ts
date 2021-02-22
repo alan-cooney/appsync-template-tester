@@ -15,10 +15,10 @@
  * @param list
  */
 export function copyAndRetainAllKeys(map: object, list: Array<string>): object {
-  return Object.entries(map).reduce((result, [key, value]) => {
-    if (list.indexOf(key) === -1) return result;
+  return Object.entries(map).reduce((sum, [key, value]) => {
+    if (list.indexOf(key) === -1) return sum;
     return {
-      ...result,
+      ...sum,
       [key]: value,
     };
   }, {});
