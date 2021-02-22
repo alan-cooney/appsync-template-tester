@@ -3,6 +3,7 @@ import { render } from "velocityjs";
 import * as utilCore from "./util";
 import * as time from "./util-time";
 import * as dynamodb from "./util-dynamodb";
+import * as map from "./util-map";
 
 export default class Parser {
   private template: string;
@@ -22,6 +23,7 @@ export default class Parser {
       ...utilCore,
       time,
       dynamodb,
+      map,
       ...additionalUtil,
     };
 
