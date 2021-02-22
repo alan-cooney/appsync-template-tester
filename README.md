@@ -47,7 +47,7 @@ test('Test the resolver', () => {
 
 ### Util helpers supported
 
-This module supports all the provided core & time \$util methods, and most of the dynamodb methods. The underlying methods can be seen in the [Resolver Mapping Template Utility Reference
+This module supports all the provided core, map & time \$util methods, and most of the dynamodb methods. The underlying methods can be seen in the [Resolver Mapping Template Utility Reference
 docs](https://docs.aws.amazon.com/appsync/latest/devguide/resolver-util-reference.html).
 
 Note: The errors list is also not returned (but \$util.error will throw an error).
