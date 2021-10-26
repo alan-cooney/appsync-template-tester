@@ -41,7 +41,7 @@ describe("string", () => {
 
 describe("number", () => {
   const i = 12345;
-  const expected = { N: 12345 };
+  const expected = { N: "12345" };
 
   test("toNumber", () => {
     const res = toNumber(i);
@@ -84,7 +84,7 @@ describe("list", () => {
   const expected = {
     L: [
       { S: "foo" },
-      { N: 123 },
+      { N: "123" },
       {
         M: {
           bar: { S: "baz" },
@@ -114,7 +114,7 @@ describe("map", () => {
   const expected = {
     M: {
       foo: { S: "bar" },
-      baz: { N: 1234 },
+      baz: { N: "1234" },
       beep: {
         L: [{ S: "boop" }],
       },

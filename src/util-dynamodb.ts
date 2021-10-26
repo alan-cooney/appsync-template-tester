@@ -11,7 +11,7 @@ export function toStringJson(str: string) {
 }
 
 export function toNumber(num: number) {
-  return { N: num };
+  return { N: num.toString() };
 }
 
 export function toNumberJson(num: number) {
