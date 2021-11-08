@@ -22,7 +22,9 @@ import { join } from 'path';
 
 // Load from a file (if not in a string already)
 const templateFilePath = join(__dirname, './pathToFile.vtl');
-const template = readFileSync(templateFilePath);
+const template = readFileSync(templateFilePath, {
+  encoding: 'utf8',
+});
 
 // Create the resolver
 const parser = new Parser(template);
