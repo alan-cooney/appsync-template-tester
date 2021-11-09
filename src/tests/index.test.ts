@@ -74,6 +74,24 @@ test("#return returns null if called without arguments", () => {
   expect(res).toEqual(null);
 });
 
+describe("$context.stash keeps data", () => {
+  test("Keep initial data", () => {
+    const vtl = "";
+    const parser = new Parser(vtl);
+    parser.resolve({
+      stash: { key: "value" },
+    });
+    expect(parser.stash).toStrictEqual({ key: "value" });
+  });
+
+  test("Keep resolved data", () => {
+    const vtl = '$ctx.stash.put("key", "value")';
+    const parser = new Parser(vtl);
+    parser.resolve({});
+    expect(parser.stash).toStrictEqual({ key: "value" });
+  });
+});
+
 describe("Typecasting works as expected", () => {
   test("Boolean false", () => {
     const vtl = "\nfalse "; // Note surrounding whitespace should be ignored
