@@ -8,6 +8,12 @@ import * as map from "./util-map";
 export default class Parser {
   private template: string;
 
+  private internalStash: Record<string, string> = {};
+
+  public get stash() {
+    return this.internalStash;
+  }
+
   constructor(template: string) {
     this.template = template;
   }
@@ -17,6 +23,7 @@ export default class Parser {
    */
   public resolve(context: Context, additionalUtil?: object): any {
     const clonedContext = JSON.parse(JSON.stringify(context));
+    if (!clonedContext.stash) clonedContext.stash = {};
     clonedContext.args = clonedContext.arguments;
 
     const util = {
@@ -42,6 +49,9 @@ export default class Parser {
     };
 
     const res = render(this.template, params, macros);
+
+    // Keep stash value
+    this.internalStash = clonedContext.stash;
 
     // Remove preceding and trailing whitespace
     const resWithoutWhitespace = res
