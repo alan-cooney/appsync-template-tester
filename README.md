@@ -47,7 +47,7 @@ test('Test the resolver', () => {
 });
 ```
 
-The vtl tempalte
+The vtl template
 ```
 $util.toJson($ctx.result)
 ```
