@@ -47,6 +47,11 @@ test('Test the resolver', () => {
 });
 ```
 
+The vtl tempalte
+```
+$util.toJson($ctx.result)
+```
+
 ### Util helpers supported
 
 This module supports all the provided core, map & time \$util methods, and most of the dynamodb methods. The underlying methods can be seen in the [Resolver Mapping Template Utility Reference
