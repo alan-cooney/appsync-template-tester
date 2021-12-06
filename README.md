@@ -39,10 +39,8 @@ test('Test the resolver', () => {
     },
   };
 
-  // parser.resolve() automatically typecasts (note JSON becomes a JS object for ease of testing)
   const response = parser.resolve(context);
 
-  // For convenience, the response is returned as a JS object rather than JSON
   expect(response.id).toBe('testId');
 });
 ```
