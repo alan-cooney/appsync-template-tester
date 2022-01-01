@@ -1,5 +1,6 @@
 // eslint-disable-next-line max-classes-per-file
 import { render } from "velocityjs";
+import { valueMapper } from "./value-mapper/mapper";
 import * as utilCore from "./util";
 import * as time from "./util-time";
 import * as dynamodb from "./util-dynamodb";
@@ -48,7 +49,7 @@ export default class Parser {
       },
     };
 
-    const res = render(this.template, params, macros);
+    const res = render(this.template, params, macros, { valueMapper });
 
     // Keep stash value
     this.internalStash = clonedContext.stash;

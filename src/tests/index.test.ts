@@ -56,6 +56,15 @@ test("resolve with additional util", () => {
   expect(res).toEqual({ test: 10 });
 });
 
+test("valueMapper works correctly", () => {
+  const vtl = `
+  #set($array = [1,2,3])
+  { "test": $array.contains(1) }`;
+  const parser = new Parser(vtl);
+  const res = parser.resolve({});
+  expect(res).toEqual({ test: true });
+});
+
 test("#return can return an object early", () => {
   const vtl = `
   #return({"result": "A"})
