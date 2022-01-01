@@ -64,8 +64,8 @@ export class JavaString {
     // in the regex into the result. To remove the groups from the result we need the count of capturing groups in
     // the provided regex, the only way in JS seems to be via a match to an empty string
     const testRe = new RegExp(`${regexString.toString()}|`);
-    // @ts-ignore: Object is possibly 'null'.
-    const ngroups = "".match(testRe).length; // actually num of groups plus one, ie "" and the (empty) groups
+    const matches = "".match(testRe);
+    const ngroups = matches ? matches.length : 0; // actually num of groups plus one, ie "" and the (empty) groups
 
     const re = new RegExp(regexString.toString());
 
