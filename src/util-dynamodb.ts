@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable import/prefer-default-export */
-import { isBoolean, isNumber, isList, isString } from "./util";
+import { isBoolean, isList, isNumber, isString } from "./util";
 
 export function toString(str: string) {
   return { S: str };
@@ -72,6 +72,10 @@ export function toDynamoDB(i: any): any {
 
 export function toDynamoDBJson(i: any) {
   return JSON.stringify(toDynamoDB(i));
+}
+
+export function toStringSetJson(list: Array<string>): {SS: Array<string>} {
+  return { SS: list };
 }
 
 /**
