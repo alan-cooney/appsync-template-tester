@@ -12,7 +12,7 @@ import {
   toNumberJson,
   toString,
   toStringJson,
-  toStringSetJson
+  toStringSetJson,
 } from "../util-dynamodb";
 
 /**
@@ -148,8 +148,8 @@ describe("map", () => {
   });
 
   test("toStringSetJson", () => {
-    const i = ["a", "b", "c"];
-    const res = toStringSetJson(i);
-    expect(res).toStrictEqual({ SS: [ 'a', 'b', 'c' ] })
+    const input = ["a", "b", "c"];
+    const res = toStringSetJson(input);
+    expect(res).toStrictEqual({ SS: ["a", "b", "c"] });
   });
 });

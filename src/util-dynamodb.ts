@@ -74,7 +74,7 @@ export function toDynamoDBJson(i: any) {
   return JSON.stringify(toDynamoDB(i));
 }
 
-export function toStringSetJson(list: Array<string>): {SS: Array<string>} {
+export function toStringSetJson(list: Array<string>): { SS: Array<string> } {
   return { SS: list };
 }
 
