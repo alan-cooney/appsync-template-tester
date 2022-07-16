@@ -1,17 +1,18 @@
 import {
-  toString,
-  toNumber,
   toBoolean,
-  toList,
-  toMap,
-  toDynamoDB,
-  toStringJson,
-  toNumberJson,
   toBooleanJson,
+  toDynamoDB,
+  toList,
   toListJson,
+  toMap,
   toMapJson,
   toMapValues,
   toMapValuesJson,
+  toNumber,
+  toNumberJson,
+  toString,
+  toStringJson,
+  toStringSetJson,
 } from "../util-dynamodb";
 
 /**
@@ -144,5 +145,11 @@ describe("map", () => {
   test("toMapValuesJson", () => {
     const res = toMapValuesJson(i);
     expect(JSON.parse(res)).toEqual(expected.M);
+  });
+
+  test("toStringSetJson", () => {
+    const input = ["a", "b", "c"];
+    const res = toStringSetJson(input);
+    expect(res).toStrictEqual({ SS: ["a", "b", "c"] });
   });
 });
