@@ -22,7 +22,7 @@
   ],
   "repository": "https://github.com/alan-cooney/appsync-template-tester.git",
   "license": "MIT",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc --resolveJsonModule",
