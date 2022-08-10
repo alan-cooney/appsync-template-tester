@@ -3,7 +3,7 @@ import {
   nowEpochSeconds,
   nowEpochMilliSeconds,
   nowFormatted,
-  parseFormattedToEpochMilliSecond,
+  parseFormattedToEpochMilliSeconds,
   parseISO8601ToEpochMilliSeconds,
   epochMilliSecondsToSeconds,
   epochMilliSecondsToISO8601,
@@ -37,18 +37,18 @@ describe("nowFormatted", () => {
   });
 });
 
-describe("parseFormattedToEpochMilliSecond", () => {
+describe("parseFormattedToEpochMilliSeconds", () => {
   test("time and format", () => {
     const format = "yyyy-MM-ddTHH:mm:ssZ";
     const time = nowFormatted(format);
-    const res = parseFormattedToEpochMilliSecond(time, format);
+    const res = parseFormattedToEpochMilliSeconds(time, format);
     expect(res.toString().length).toBe(13);
   });
 
   test("time and format and timezone", () => {
     const format = "yyyy-MM-ddTHH:mm:ssZ";
     const time = nowFormatted(format);
-    const res = parseFormattedToEpochMilliSecond(
+    const res = parseFormattedToEpochMilliSeconds(
       time,
       format,
       "Australia/Perth"
