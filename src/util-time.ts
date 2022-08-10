@@ -25,7 +25,7 @@ export function nowFormatted(format: string, timezone: string = "utc") {
   return moment().tz(timezone).format(vtlFormatConverted);
 }
 
-export function parseFormattedToEpochMilliSecond(
+export function parseFormattedToEpochMilliSeconds(
   time: string,
   formatFrom: string,
   timezone: string = "utc"
