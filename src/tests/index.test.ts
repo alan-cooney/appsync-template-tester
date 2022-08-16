@@ -84,14 +84,14 @@ describe("$context keeps full context data", () => {
       });
       expect(parser.stash).toStrictEqual({ key: "value" });
     });
-  
+
     test("Keep resolved data", () => {
       const vtl = '$ctx.stash.put("key", "value")';
       const parser = new Parser(vtl);
       parser.resolve({});
       expect(parser.stash).toStrictEqual({ key: "value" });
     });
-  
+
     test("Keep resolved data with complex structures", () => {
       const vtl = `
         #set($nestedMap = {})
@@ -100,22 +100,22 @@ describe("$context keeps full context data", () => {
       `;
       const parser = new Parser(vtl);
       parser.resolve({});
-      expect(parser.stash).toStrictEqual({ key: { nestedKey: "nestedValue"} });
+      expect(parser.stash).toStrictEqual({ key: { nestedKey: "nestedValue" } });
     });
 
-    describe('pre parse defaults', () => {
-      test('empty context', () => {
-        const parser = new Parser('');
+    describe("pre parse defaults", () => {
+      test("empty context", () => {
+        const parser = new Parser("");
         expect(parser.context).not.toBeUndefined();
         expect(Object.keys(parser.context).length).toEqual(0);
-      })
+      });
 
-      test('empty stash', () => {
-        const parser = new Parser('');
+      test("empty stash", () => {
+        const parser = new Parser("");
         expect(parser.stash).not.toBeUndefined();
         expect(Object.keys(parser.stash).length).toEqual(0);
-      })
-    })
+      });
+    });
   });
 
   test("Keep argument modifications", () => {
@@ -124,8 +124,11 @@ describe("$context keeps full context data", () => {
       #set($ctx.args.addition = "value")
     `;
     const parser = new Parser(vtl);
-    parser.resolve({arguments:{ original: 'foo' }})
-    expect(parser.context.arguments).toStrictEqual({ original: "bar", addition: "value" });
+    parser.resolve({ arguments: { original: "foo" } });
+    expect(parser.context.arguments).toStrictEqual({
+      original: "bar",
+      addition: "value",
+    });
   });
 });
 

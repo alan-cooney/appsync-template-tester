@@ -92,7 +92,7 @@ export type Context = {
   request?: object;
   info?: object;
   error?: object;
-  prev?: object & {result: object};
+  prev?: object & { result: object };
   stash?: Record<string, any>;
 };
 
