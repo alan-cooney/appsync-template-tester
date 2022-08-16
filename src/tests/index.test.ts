@@ -103,14 +103,14 @@ describe("$context keeps full context data", () => {
       expect(parser.stash).toStrictEqual({ key: { nestedKey: "nestedValue" } });
     });
 
-    describe("pre parse defaults", () => {
-      test("empty context", () => {
+    describe("Defaults if context is not defined", () => {
+      test("Context defaults to an empty object", () => {
         const parser = new Parser("");
         expect(parser.context).not.toBeUndefined();
         expect(Object.keys(parser.context).length).toEqual(0);
       });
 
-      test("empty stash", () => {
+      test("Stash defaults to an empty object", () => {
         const parser = new Parser("");
         expect(parser.stash).not.toBeUndefined();
         expect(Object.keys(parser.stash).length).toEqual(0);
