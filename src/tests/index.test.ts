@@ -74,21 +74,61 @@ test("#return returns null if called without arguments", () => {
   expect(res).toEqual(null);
 });
 
-describe("$context.stash keeps data", () => {
-  test("Keep initial data", () => {
-    const vtl = "";
-    const parser = new Parser(vtl);
-    parser.resolve({
-      stash: { key: "value" },
+describe("$context keeps full context data", () => {
+  describe("$context.stash keeps data", () => {
+    test("Keep initial data", () => {
+      const vtl = "";
+      const parser = new Parser(vtl);
+      parser.resolve({
+        stash: { key: "value" },
+      });
+      expect(parser.stash).toStrictEqual({ key: "value" });
     });
-    expect(parser.stash).toStrictEqual({ key: "value" });
+
+    test("Keep resolved data", () => {
+      const vtl = '$ctx.stash.put("key", "value")';
+      const parser = new Parser(vtl);
+      parser.resolve({});
+      expect(parser.stash).toStrictEqual({ key: "value" });
+    });
+
+    test("Keep resolved data with complex structures", () => {
+      const vtl = `
+        #set($nestedMap = {})
+        $util.qr($nestedMap.put("nestedKey", "nestedValue"))
+        $ctx.stash.put("key", $nestedMap)
+      `;
+      const parser = new Parser(vtl);
+      parser.resolve({});
+      expect(parser.stash).toStrictEqual({ key: { nestedKey: "nestedValue" } });
+    });
+
+    describe("Defaults if context is not defined", () => {
+      test("Context defaults to an empty object", () => {
+        const parser = new Parser("");
+        expect(parser.context).not.toBeUndefined();
+        expect(Object.keys(parser.context).length).toEqual(0);
+      });
+
+      test("Stash defaults to an empty object", () => {
+        const parser = new Parser("");
+        expect(parser.stash).not.toBeUndefined();
+        expect(Object.keys(parser.stash).length).toEqual(0);
+      });
+    });
   });
 
-  test("Keep resolved data", () => {
-    const vtl = '$ctx.stash.put("key", "value")';
+  test("Keep argument modifications", () => {
+    const vtl = `
+      #set($ctx.args.original = "bar")
+      #set($ctx.args.addition = "value")
+    `;
     const parser = new Parser(vtl);
-    parser.resolve({});
-    expect(parser.stash).toStrictEqual({ key: "value" });
+    parser.resolve({ arguments: { original: "foo" } });
+    expect(parser.context.arguments).toStrictEqual({
+      original: "bar",
+      addition: "value",
+    });
   });
 });
 
