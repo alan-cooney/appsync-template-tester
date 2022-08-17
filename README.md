@@ -1,11 +1,11 @@
-# appsync-template-tester
+# Appsync VTL Tester
 
 [![Built with
 typescript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://www.typescriptlang.org/)
 [![version](https://badgen.net/npm/v/appsync-template-tester)](https://www.npmjs.com/package/appsync-template-tester)
 [![downloads](https://badgen.net/npm/dt/appsync-template-tester)](https://www.npmjs.com/package/appsync-template-tester)
 
-Unit test AppSync VTL resolvers, with popular frameworks such as Jest.
+Write unit tests for AWS AppSync VTL resolvers, with popular frameworks such as Jest.
 
 ## Use
 
