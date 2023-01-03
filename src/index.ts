@@ -4,6 +4,7 @@ import * as utilCore from "./util";
 import * as time from "./util-time";
 import * as dynamodb from "./util-dynamodb";
 import * as map from "./util-map";
+import * as math from "./util-math";
 
 export default class Parser {
   private template: string;
@@ -35,6 +36,7 @@ export default class Parser {
       time,
       dynamodb,
       map,
+      math,
       ...additionalUtil,
     };
 
