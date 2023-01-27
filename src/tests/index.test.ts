@@ -69,8 +69,10 @@ test("resolve with additional extensions", () => {
   });
 
   // Then.
-  expect(mockEvictFromApiCache).toHaveBeenCalledTimes(1)
-  expect(mockEvictFromApiCache).toHaveBeenCalledWith("Query", "users", { "context.arguments.id": 10 })
+  expect(mockEvictFromApiCache).toHaveBeenCalledTimes(1);
+  expect(mockEvictFromApiCache).toHaveBeenCalledWith("Query", "users", {
+    "context.arguments.id": 10,
+  });
 });
 
 test("#return can return an object early", () => {
