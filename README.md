@@ -53,3 +53,25 @@ This module supports all the provided core, map & time \$util methods, and most 
 docs](https://docs.aws.amazon.com/appsync/latest/devguide/resolver-util-reference.html).
 
 Note: The errors list is also not returned (but \$util.error will throw an error).
+
+### Extensions
+
+AWS AppSync provides extension methods via `$extensions`, for example `$extensions.evictFromApiCache`. It can be useful to assert that your VTL template is invoking these methods, therefore, you can provide custom extensions with your own implementations. Note that default extension methods are not provided. To read more about AWS AppSync extensions see the [Extensions
+docs](https://docs.aws.amazon.com/appsync/latest/devguide/extensions.html).
+
+```javascript
+  // Given.
+  const mockEvictFromApiCache = jest.fn();
+  const parser = new Parser(`$extensions.evictFromApiCache("Query", "users", {
+    "context.arguments.id": $context.arguments.id
+  })`);
+
+  // When.
+  parser.resolve({ arguments: { id: 10 } }, undefined, {
+    evictFromApiCache: mockEvictFromApiCache,
+  });
+
+  // Then.
+  expect(mockEvictFromApiCache).toHaveBeenCalledTimes(1)
+  expect(mockEvictFromApiCache).toHaveBeenCalledWith("Query", "users", { "context.arguments.id": 10 })
+```
