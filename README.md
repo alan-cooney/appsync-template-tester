@@ -66,7 +66,6 @@ docs](https://docs.aws.amazon.com/appsync/latest/devguide/extensions.html).
     "context.arguments.id": $context.arguments.id
   })`);
 
-  // When.
   parser.resolve({ arguments: { id: 10 } }, undefined, {
     evictFromApiCache: mockEvictFromApiCache,
   });
