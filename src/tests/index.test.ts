@@ -67,7 +67,6 @@ test("mocked extension is called", () => {
     evictFromApiCache: mockEvictFromApiCache,
   });
 
-  // Then.
   expect(mockEvictFromApiCache).toHaveBeenCalledTimes(1);
   expect(mockEvictFromApiCache).toHaveBeenCalledWith("Query", "users", {
     "context.arguments.id": 10,
