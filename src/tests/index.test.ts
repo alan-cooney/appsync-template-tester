@@ -56,6 +56,23 @@ test("resolve with additional util", () => {
   expect(res).toEqual({ test: 10 });
 });
 
+test("mocked extension is called", () => {
+  // Create the parser with the mock extension function
+  const mockEvictFromApiCache = jest.fn();
+  const parser = new Parser(`$extensions.evictFromApiCache("Query", "users", {
+    "context.arguments.id": $context.arguments.id
+  })`);
+
+  parser.resolve({ arguments: { id: 10 } }, undefined, {
+    evictFromApiCache: mockEvictFromApiCache,
+  });
+
+  expect(mockEvictFromApiCache).toHaveBeenCalledTimes(1);
+  expect(mockEvictFromApiCache).toHaveBeenCalledWith("Query", "users", {
+    "context.arguments.id": 10,
+  });
+});
+
 test("#return can return an object early", () => {
   const vtl = `
   #return({"result": "A"})

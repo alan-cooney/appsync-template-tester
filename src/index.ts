@@ -26,7 +26,11 @@ export default class Parser {
   /**
    * Resolve as a string
    */
-  public resolve(context: Context, additionalUtil?: object): any {
+  public resolve(
+    context: Context,
+    additionalUtil?: object,
+    additionalExtensions?: object
+  ): any {
     const clonedContext = JSON.parse(JSON.stringify(context));
     if (!clonedContext.stash) clonedContext.stash = {};
     clonedContext.args = clonedContext.arguments;
@@ -40,11 +44,14 @@ export default class Parser {
       ...additionalUtil,
     };
 
+    const extensions = { ...additionalExtensions };
+
     const params = {
       context: clonedContext,
       ctx: clonedContext,
       util,
       utils: util,
+      extensions,
     };
 
     const macros = {
