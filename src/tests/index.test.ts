@@ -57,7 +57,7 @@ test("resolve with additional util", () => {
 });
 
 test("mocked extension is called", () => {
-  // Given.
+  // Create the parser with the mock extension function
   const mockEvictFromApiCache = jest.fn();
   const parser = new Parser(`$extensions.evictFromApiCache("Query", "users", {
     "context.arguments.id": $context.arguments.id
