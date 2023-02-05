@@ -63,7 +63,6 @@ test("mocked extension is called", () => {
     "context.arguments.id": $context.arguments.id
   })`);
 
-  // When.
   parser.resolve({ arguments: { id: 10 } }, undefined, {
     evictFromApiCache: mockEvictFromApiCache,
   });
