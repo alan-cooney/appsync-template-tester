@@ -56,7 +56,7 @@ test("resolve with additional util", () => {
   expect(res).toEqual({ test: 10 });
 });
 
-test("resolve with additional extensions", () => {
+test("mocked extension is called", () => {
   // Given.
   const mockEvictFromApiCache = jest.fn();
   const parser = new Parser(`$extensions.evictFromApiCache("Query", "users", {
