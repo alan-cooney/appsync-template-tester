@@ -60,7 +60,7 @@ AWS AppSync provides extension methods via `$extensions`, for example `$extensio
 docs](https://docs.aws.amazon.com/appsync/latest/devguide/extensions.html).
 
 ```javascript
-  // Given.
+  // Create the parser with the mock extension function
   const mockEvictFromApiCache = jest.fn();
   const parser = new Parser(`$extensions.evictFromApiCache("Query", "users", {
     "context.arguments.id": $context.arguments.id
