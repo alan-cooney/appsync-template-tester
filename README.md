@@ -70,7 +70,6 @@ docs](https://docs.aws.amazon.com/appsync/latest/devguide/extensions.html).
     evictFromApiCache: mockEvictFromApiCache,
   });
 
-  // Then.
   expect(mockEvictFromApiCache).toHaveBeenCalledTimes(1)
   expect(mockEvictFromApiCache).toHaveBeenCalledWith("Query", "users", { "context.arguments.id": 10 })
 ```
